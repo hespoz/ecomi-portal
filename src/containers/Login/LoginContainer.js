@@ -7,18 +7,16 @@ import AuthAction from '../../actions/AuthAction';
 import AuthStore from '../../stores/AuthStore';
 
 //Components
-import Register from '../../components/Register/Register';
+import Login from '../../components/Login/Login';
 
 import validations from '../../utils/validations'
 
-class RegisterContainer extends React.Component {
+class LoginContainer extends React.Component {
 
     state = {
         dirty:false,
         email:'',
         password:'',
-        name:'',
-        userType:'SELLER',
         serverError:null
     }
 
@@ -30,15 +28,14 @@ class RegisterContainer extends React.Component {
         AuthStore.removeChangeListener(this.onChange);
     }
 
-    onRegister = () => {
+    onLogin = () => {
         this.setState({
             dirty:true,
             email_Error: !this.isFieldValid("email", this.state.email),
-            name_Error: !this.isFieldValid("name", this.state.name),
             password_Error: !this.isFieldValid("password", this.state.password)
         }, () => {
             if(!this.state.email_Error && !this.state.password_Error && !this.state.name_Error) {
-                AuthAction.register({email:this.state.email, password: this.state.password, name:this.state.name,type:this.state.userType});
+                //AuthAction.register({email:this.state.email, password: this.state.password, name:this.state.name,type:this.state.userType});
             }
         });
     }
@@ -53,12 +50,10 @@ class RegisterContainer extends React.Component {
     isFieldValid = (fieldId, value) => { 
             console.log(fieldId)
             switch(fieldId) {
-                case 'name':
-                    return validations.isNotEmpty(value);
                 case 'email':
-                    return validations.isEmail(value);
+                    return validations.isNotEmpty(value);
                 case 'password':
-                    return validations.isValidPassword(value);
+                    return validations.isNotEmpty(value);
                 default:
                     return true;
                     break;    
@@ -72,14 +67,14 @@ class RegisterContainer extends React.Component {
     render = () => {
         return (
             <div className="container">
-                <Register 
+                <Login 
                 {...this.state}
                 onFieldChange={this.onFieldChange}
-                onRegister={this.onRegister}/>
+                onLogin={this.onLogin}/>
             </div>
         )
     }
 
 }
 
-export default RegisterContainer
+export default LoginContainer

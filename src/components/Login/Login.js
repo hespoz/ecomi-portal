@@ -4,14 +4,14 @@ import Step from '../commons/Step';
 import Row from '../commons/Row';
 import PropTypes from 'prop-types';
 
-const Register = props => {
+const Login = props => {
 
     return (<Step className="row">
         <div className="offset-4 col-4">
 
             <Row className="row">
                 <div className="col-12 text-center">
-                    <h1>Register</h1>
+                    <h1>Login</h1>
                 </div>
             </Row>
 
@@ -46,21 +46,6 @@ const Register = props => {
 
                     </div>
                     <div className="form-group">
-                        <label htmlFor="exampleInputName">Name</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="name"
-                        placeholder="Enter name"
-                        value={props.name}
-                        onChange={props.onFieldChange}/>
-                        { props.name_Error ?
-                            (<small id="nameHelp" className="form-text text-muted">Name is required</small>)
-                            :
-                            (null)
-                        }
-
-                    </div>    
-                    <div className="form-group">
                         <label htmlFor="exampleInputPassword1">Password</label>
                         <input 
                         type="password" 
@@ -74,17 +59,10 @@ const Register = props => {
                             :
                             (null)
                         }
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleFormControlSelect1">Tipo Usuario</label>
-                        <select className="form-control" id="exampleFormControlSelect1" value={props.userType}>
-                            <option selected id="SELLER">Vendedor</option>
-                            <option id="BUYER">Comprador</option>
-                        </select>
-                    </div>              
+                    </div>      
                     <div className="row">
                         <div className="col text-center">
-                            <button type="button" className="btn btn-outline-primary" onClick={props.onRegister}>Register</button>
+                            <button type="button" className="btn btn-outline-primary" onClick={props.onLogin}>Login</button>
                         </div>
                     </div>
                 </form>
@@ -97,12 +75,12 @@ const Register = props => {
     </Step>);
 }
 
-Register.propTypes = {
-    onRegister: PropTypes.func.isRequired,
+Login.propTypes = {
+    onLogin: PropTypes.func.isRequired,
     onFieldChange: PropTypes.func.isRequired,
     email_Error: PropTypes.bool,
     password_Error: PropTypes.bool
 };
   
 
-export default Register
+export default Login

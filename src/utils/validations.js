@@ -1,7 +1,7 @@
 var validations = {
 
-    isEmpty : function(val) {
-        return val === '';
+    isNotEmpty : function(val) {
+        return val !== '';
     },
 
     isEmail : function(email) {
